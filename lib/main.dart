@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationManager.instance.navigatorKey,
-      home: const LoginView(),
+      home: const RegisterView(),
     );
   }
 }

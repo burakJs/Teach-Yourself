@@ -7,4 +7,7 @@ class StringConstant {
   static const login = 'Login';
   static const register = 'Register';
   static const logoText = 'TY';
+  static const student = 'Student';
+  static const questioner = 'Questioner';
+  static const admin = 'Admin';
 }

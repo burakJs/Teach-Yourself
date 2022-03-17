@@ -16,14 +16,33 @@ class RegisterView extends StatelessWidget {
         child: Padding(
           padding: context.paddingMedium,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Logo(radius: 48),
               const AuthTextField(title: StringConstant.name),
               const AuthTextField(title: StringConstant.surname),
               const AuthTextField(title: StringConstant.username),
               const AuthTextField(title: StringConstant.email),
               const AuthTextField(title: StringConstant.password),
+              DropdownButton<int>(
+                  value: 0,
+                  alignment: Alignment.center,
+                  items: [
+                    DropdownMenuItem(
+                      value: 0,
+                      child: _dropdownItemText(context, StringConstant.student),
+                    ),
+                    DropdownMenuItem(
+                      value: 1,
+                      child: _dropdownItemText(context, StringConstant.questioner),
+                    ),
+                    DropdownMenuItem(
+                      value: 2,
+                      child: _dropdownItemText(context, StringConstant.admin),
+                    ),
+                  ],
+                  onChanged: (val) {
+                    print(val);
+                  }),
               AuthButton(
                 text: StringConstant.register,
                 callBack: () {},
@@ -32,6 +51,13 @@ class RegisterView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Text _dropdownItemText(BuildContext context, String text) {
+    return Text(
+      text,
+      style: context.textTheme.headline6,
     );
   }
 }
