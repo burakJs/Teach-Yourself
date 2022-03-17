@@ -32,6 +32,13 @@ class AuthTextField extends StatelessWidget {
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
+                  width: 1,
+                  color: context.colorScheme.onSurface.withOpacity(0.7),
+                ),
+                borderRadius: context.lowBorderRadius,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
                   width: 4,
                   color: context.colorScheme.onSurface.withOpacity(0.7),
                 ),
