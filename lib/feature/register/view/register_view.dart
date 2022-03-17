@@ -25,7 +25,7 @@ class RegisterView extends StatelessWidget {
               const AuthTextField(title: StringConstant.email),
               const AuthTextField(title: StringConstant.password),
               AuthButton(
-                text: 'Register',
+                text: StringConstant.register,
                 callBack: () {},
               )
             ],

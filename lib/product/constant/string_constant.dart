@@ -4,4 +4,7 @@ class StringConstant {
   static const username = 'Username';
   static const email = 'E-mail';
   static const password = 'Password';
+  static const login = 'Login';
+  static const register = 'Register';
+  static const logoText = 'TY';
 }

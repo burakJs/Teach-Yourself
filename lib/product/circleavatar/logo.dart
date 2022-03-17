@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/product/constant/string_constant.dart';
 
 class Logo extends StatelessWidget {
   const Logo({Key? key, required this.radius}) : super(key: key);
@@ -10,7 +11,7 @@ class Logo extends StatelessWidget {
       radius: radius,
       backgroundColor: context.colorScheme.onSurface,
       child: Text(
-        'TY',
+        StringConstant.logoText,
         style: context.textTheme.headline3?.copyWith(
           color: context.colorScheme.onBackground,
           fontWeight: FontWeight.bold,
