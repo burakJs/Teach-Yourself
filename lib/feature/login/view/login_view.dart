@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/core/init/navigation_manager.dart';
 import 'package:teach_yourself/product/button/auth_button.dart';
 import 'package:teach_yourself/product/circleavatar/logo.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
+import 'package:teach_yourself/product/constant/navigation_constants.dart';
 import 'package:teach_yourself/product/textfield/auth_textfield.dart';
 
 class LoginView extends StatelessWidget {
@@ -29,7 +31,11 @@ class LoginView extends StatelessWidget {
               context.emptySizedHeightBoxNormal,
               Align(
                 alignment: Alignment.centerRight,
-                child: AuthButton(text: StringConstant.login, callBack: () {}),
+                child: AuthButton(
+                    text: StringConstant.login,
+                    callBack: () {
+                      NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
+                    }),
               )
             ],
           ),

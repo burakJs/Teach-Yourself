@@ -10,4 +10,6 @@ class StringConstant {
   static const student = 'Student';
   static const questioner = 'Questioner';
   static const admin = 'Admin';
+  static const questionPool = 'Question Pool';
+  static const unconfirmedQuestions = 'Unconfirmed Questions';
 }

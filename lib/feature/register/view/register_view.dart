@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/circleavatar/logo.dart';
+import 'package:teach_yourself/core/init/navigation_manager.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
+import 'package:teach_yourself/product/constant/navigation_constants.dart';
 import 'package:teach_yourself/product/textfield/auth_textfield.dart';
 
 import '../../../product/button/auth_button.dart';
@@ -40,12 +41,12 @@ class RegisterView extends StatelessWidget {
                       child: _dropdownItemText(context, StringConstant.admin),
                     ),
                   ],
-                  onChanged: (val) {
-                    print(val);
-                  }),
+                  onChanged: (val) {}),
               AuthButton(
                 text: StringConstant.register,
-                callBack: () {},
+                callBack: () {
+                  NavigationManager.instance.navigateToPage(NavigationConstants.LOGIN);
+                },
               )
             ],
           ),
