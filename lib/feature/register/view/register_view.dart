@@ -3,6 +3,8 @@ import 'package:kartal/kartal.dart';
 import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
 import 'package:teach_yourself/product/constant/navigation_constants.dart';
+import 'package:teach_yourself/product/enums/person_type_enum.dart';
+import 'package:teach_yourself/product/extensions/string_extension.dart';
 import 'package:teach_yourself/product/textfield/auth_textfield.dart';
 
 import '../../../product/button/auth_button.dart';
@@ -25,23 +27,18 @@ class RegisterView extends StatelessWidget {
               const AuthTextField(title: StringConstant.email),
               const AuthTextField(title: StringConstant.password),
               DropdownButton<int>(
-                  value: 0,
-                  alignment: Alignment.center,
-                  items: [
-                    DropdownMenuItem(
-                      value: 0,
-                      child: _dropdownItemText(context, StringConstant.student),
-                    ),
-                    DropdownMenuItem(
-                      value: 1,
-                      child: _dropdownItemText(context, StringConstant.questioner),
-                    ),
-                    DropdownMenuItem(
-                      value: 2,
-                      child: _dropdownItemText(context, StringConstant.admin),
-                    ),
-                  ],
-                  onChanged: (val) {}),
+                value: PersonType.admin.index,
+                alignment: Alignment.center,
+                items: PersonType.values
+                    .map(
+                      (e) => DropdownMenuItem<int>(
+                        value: e.index,
+                        child: _dropdownItemText(context, e.name.upperFirstLetter),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (val) {},
+              ),
               AuthButton(
                 text: StringConstant.register,
                 callBack: () {

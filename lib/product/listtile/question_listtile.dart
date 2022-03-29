@@ -29,7 +29,7 @@ class QuestionListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Text(
-        DateFormat('dd-MM-yyyy - kk:mm').format(question.time.toDate()),
+        DateFormat('dd-MM-yyyy - kk:mm').format(question.createdTime!.toDate()),
         style: context.textTheme.bodyLarge,
       ),
       onTap: () {
