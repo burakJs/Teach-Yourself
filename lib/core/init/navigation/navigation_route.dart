@@ -13,9 +13,9 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.REGISTER:
-        return normalNavigate(const RegisterView());
+        return normalNavigate(RegisterView());
       case NavigationConstants.LOGIN:
-        return normalNavigate(const LoginView());
+        return normalNavigate(LoginView());
       case NavigationConstants.ADMIN_HOME:
         return normalNavigate(const AdminHomeView());
       case NavigationConstants.ADMIN_UNCONFIRMED:

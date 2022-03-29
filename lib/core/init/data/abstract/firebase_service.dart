@@ -9,7 +9,7 @@ abstract class FirebaseService {
 
   Future<String?> register(Person person);
 
-  Future<String?> login(Person person);
+  Future<String?> login(String email, String password);
 
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getDataFromOneCollection(String collection);
 

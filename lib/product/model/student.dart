@@ -17,8 +17,8 @@ class Student extends Person {
     required String name,
     required String surname,
     required String username,
-    required String email,
-    required String password,
+    String? email,
+    String? password,
   }) : super(
           name: name,
           surname: surname,

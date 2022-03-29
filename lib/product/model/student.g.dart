@@ -16,16 +16,12 @@ Student _$StudentFromJson(Map<String, dynamic> json) => Student(
       name: json['name'] as String,
       surname: json['surname'] as String,
       username: json['username'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
     );
 
 Map<String, dynamic> _$StudentToJson(Student instance) => <String, dynamic>{
       'name': instance.name,
       'surname': instance.surname,
       'username': instance.username,
-      'email': instance.email,
-      'password': instance.password,
       'correctList': instance.correctList,
       'doneList': instance.doneList,
     };

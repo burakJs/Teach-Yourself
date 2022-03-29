@@ -5,11 +5,11 @@ import 'package:teach_yourself/product/model/person.dart';
 
 class FirebaseManager extends FirebaseService {
   @override
-  Future<String?> login(Person person) async {
+  Future<String?> login(String email, String password) async {
     try {
       await auth.signInWithEmailAndPassword(
-        email: person.email,
-        password: person.password,
+        email: email,
+        password: password,
       );
     } on FirebaseAuthException catch (e) {
       return e.code;
@@ -23,8 +23,8 @@ class FirebaseManager extends FirebaseService {
   Future<String?> register(Person person) async {
     try {
       await auth.createUserWithEmailAndPassword(
-        email: person.email,
-        password: person.password,
+        email: person.email ?? '',
+        password: person.password ?? '',
       );
     } on FirebaseAuthException catch (e) {
       return e.code;

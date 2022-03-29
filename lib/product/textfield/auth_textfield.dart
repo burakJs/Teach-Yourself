@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class AuthTextField extends StatelessWidget {
-  const AuthTextField({Key? key, required this.title}) : super(key: key);
+  const AuthTextField({Key? key, required this.title, this.controller}) : super(key: key);
   final String title;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,6 +22,7 @@ class AuthTextField extends StatelessWidget {
           ),
           context.emptySizedHeightBoxLow,
           TextField(
+            controller: controller,
             decoration: InputDecoration(
               contentPadding: context.paddingLow,
               border: OutlineInputBorder(

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const RegisterView(),
+      home: RegisterView(),
     );
   }
 }
