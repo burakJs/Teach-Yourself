@@ -7,4 +7,5 @@ class ColorConstants {
 
   final Color blackColor = Colors.black;
   final Color whiteColor = Colors.white;
+  final Color greenColor = Colors.green;
 }

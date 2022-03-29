@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/product/alert/question_alert.dart';
 import 'package:teach_yourself/product/constant/color_constants.dart';
 import 'package:teach_yourself/product/model/question.dart';
 
@@ -31,7 +32,12 @@ class QuestionListTile extends StatelessWidget {
         DateFormat('dd-MM-yyyy - kk:mm').format(question.time.toDate()),
         style: context.textTheme.bodyLarge,
       ),
-      onTap: onPressed,
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) => QuestionAlert(question: question),
+        );
+      },
     );
   }
 }
