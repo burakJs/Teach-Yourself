@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/core/init/navigation_manager.dart';
+import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
 import 'package:teach_yourself/product/button/app_bar_icon_button.dart';
 import 'package:teach_yourself/product/constant/color_constants.dart';
 import 'package:teach_yourself/product/constant/navigation_constants.dart';
@@ -47,7 +47,12 @@ class AdminHomeView extends StatelessWidget {
   Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
     return Padding(
       padding: context.horizontalPaddingNormal,
-      child: AppBarIconButton(icon: Icons.logout),
+      child: AppBarIconButton(
+        icon: Icons.logout,
+        onPressed: () {
+          NavigationManager.instance.navigateToPageClear(NavigationConstants.LOGIN);
+        },
+      ),
     );
   }
 

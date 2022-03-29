@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/core/init/navigation_manager.dart';
+import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
 import 'package:teach_yourself/product/button/auth_button.dart';
 import 'package:teach_yourself/product/circleavatar/logo.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
@@ -23,7 +23,7 @@ class LoginView extends StatelessWidget {
               context.emptySizedHeightBoxNormal,
               context.emptySizedHeightBoxNormal,
               const AuthTextField(
-                title: StringConstant.username,
+                title: StringConstant.email,
               ),
               const AuthTextField(
                 title: StringConstant.password,

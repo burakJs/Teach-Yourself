@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/core/init/navigation_manager.dart';
+import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
 import 'package:teach_yourself/product/constant/navigation_constants.dart';
 import 'package:teach_yourself/product/textfield/auth_textfield.dart';

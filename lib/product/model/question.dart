@@ -5,6 +5,7 @@ part 'question.g.dart';
 
 @JsonSerializable()
 class Question {
+  final String? uid;
   final String questionText;
   final List<String> answers;
   final int correctAnswer;
@@ -14,6 +15,7 @@ class Question {
   final bool isConfirmed;
 
   Question({
+    this.uid,
     required this.questionText,
     required this.answers,
     required this.correctAnswer,

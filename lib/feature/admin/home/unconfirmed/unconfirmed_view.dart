@@ -66,7 +66,10 @@ class AdminUnconfirmedView extends StatelessWidget {
   Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
     return Padding(
       padding: context.horizontalPaddingNormal,
-      child: AppBarIconButton(icon: Icons.logout),
+      child: AppBarIconButton(
+        icon: Icons.logout,
+        onPressed: () {},
+      ),
     );
   }
 }
