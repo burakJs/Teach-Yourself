@@ -13,6 +13,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
       correctAnswer: json['correctAnswer'] as int,
       image: json['image'] as String?,
       time: Question._fromJson(json['time'] as Map<String, dynamic>),
+      isConfirmed: json['isConfirmed'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
@@ -21,4 +22,5 @@ Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
       'correctAnswer': instance.correctAnswer,
       'image': instance.image,
       'time': Question._toJson(instance.time),
+      'isConfirmed': instance.isConfirmed,
     };

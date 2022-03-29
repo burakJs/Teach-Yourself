@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/core/init/navigation_manager.dart';
+import 'package:teach_yourself/product/button/app_bar_icon_button.dart';
 import 'package:teach_yourself/product/constant/color_constants.dart';
+import 'package:teach_yourself/product/constant/navigation_constants.dart';
 import 'package:teach_yourself/product/constant/string_constant.dart';
 import 'package:teach_yourself/product/listtile/question_listtile.dart';
 import 'package:teach_yourself/product/model/question.dart';
@@ -18,7 +21,7 @@ class AdminHomeView extends StatelessWidget {
         title: _appBarTitleText(context),
         centerTitle: false,
         actions: [
-          _appBarLogOutIcon(context, _colors, _iconSize),
+          _appBarLogOutIcon(context, _colors),
         ],
       ),
       body: SafeArea(
@@ -41,14 +44,10 @@ class AdminHomeView extends StatelessWidget {
     );
   }
 
-  Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors, double _iconSize) {
+  Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
     return Padding(
       padding: context.horizontalPaddingNormal,
-      child: Icon(
-        Icons.logout,
-        color: _colors.blackColor,
-        size: _iconSize,
-      ),
+      child: AppBarIconButton(icon: Icons.logout),
     );
   }
 
@@ -57,7 +56,9 @@ class AdminHomeView extends StatelessWidget {
       padding: context.paddingNormal,
       child: Text(
         StringConstant.questionPool,
-        style: context.textTheme.headline5,
+        style: context.textTheme.headline5?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -70,6 +71,7 @@ class AdminHomeView extends StatelessWidget {
             itemCount: questionList.length,
             itemBuilder: (context, index) => QuestionListTile(
               question: questionList[index],
+              onPressed: () {},
             ),
           ),
         ),
@@ -80,7 +82,9 @@ class AdminHomeView extends StatelessWidget {
 
   ElevatedButton _unconfirmedQuestionButton(ColorConstants _colors, BuildContext context, double _iconSize) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_UNCONFIRMED);
+      },
       style: ElevatedButton.styleFrom(
         primary: _colors.blackColor,
       ),

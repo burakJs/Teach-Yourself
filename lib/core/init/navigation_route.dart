@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teach_yourself/feature/admin/home/unconfirmed/unconfirmed_view.dart';
 import 'package:teach_yourself/feature/admin/home/view/admin_home_view.dart';
 import 'package:teach_yourself/feature/login/view/login_view.dart';
 import 'package:teach_yourself/feature/register/view/register_view.dart';
@@ -17,6 +18,8 @@ class NavigationRoute {
         return normalNavigate(const LoginView());
       case NavigationConstants.ADMIN_HOME:
         return normalNavigate(const AdminHomeView());
+      case NavigationConstants.ADMIN_UNCONFIRMED:
+        return normalNavigate(const AdminUnconfirmedView());
       default:
         return normalNavigate(const Text('ERROR'));
     }
