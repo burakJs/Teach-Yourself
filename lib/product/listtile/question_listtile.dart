@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/alert/question_alert.dart';
-import 'package:teach_yourself/product/constant/color_constants.dart';
-import 'package:teach_yourself/product/model/question.dart';
+import '../alert/question_alert.dart';
+import '../constant/color_constants.dart';
+import '../model/question.dart';
 
 class QuestionListTile extends StatelessWidget {
   QuestionListTile({Key? key, required this.question, required this.onPressed}) : super(key: key);

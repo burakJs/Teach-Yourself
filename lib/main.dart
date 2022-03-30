@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
-import 'package:teach_yourself/core/init/navigation/navigation_route.dart';
-import 'package:teach_yourself/feature/register/view/register_view.dart';
+import 'core/init/navigation/navigation_manager.dart';
+import 'core/init/navigation/navigation_route.dart';
+import 'feature/register/view/register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

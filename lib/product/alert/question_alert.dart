@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/constant/color_constants.dart';
+import '../constant/color_constants.dart';
 
 import '../model/question.dart';
 
@@ -19,7 +19,8 @@ class QuestionAlert extends StatelessWidget {
           // question.image != null ? Image.network(question.image!) : const SizedBox(),
           SizedBox(
             height: context.height / 4,
-            child: Image.network('https://i.picsum.photos/id/130/536/354.jpg?hmac=a3CMMZgFMD60VsyMXoXbMllYckSrfgS3Dr5pUzkoZqs', fit: BoxFit.cover),
+            child: Image.network('https://i.picsum.photos/id/130/536/354.jpg?hmac=a3CMMZgFMD60VsyMXoXbMllYckSrfgS3Dr5pUzkoZqs',
+                fit: BoxFit.cover),
           ),
           context.emptySizedHeightBoxNormal,
           for (String answer in question.answers)

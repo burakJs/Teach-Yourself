@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/constant/string_constant.dart';
-import 'package:teach_yourself/product/enums/person_type_enum.dart';
-import 'package:teach_yourself/product/extensions/string_extension.dart';
-import 'package:teach_yourself/product/textfield/auth_textfield.dart';
+import '../../../product/constant/string_constant.dart';
+import '../../../product/enums/person_type_enum.dart';
+import '../../../product/extensions/string_extension.dart';
+import '../../../product/textfield/auth_textfield.dart';
 
 import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/button/auth_button.dart';

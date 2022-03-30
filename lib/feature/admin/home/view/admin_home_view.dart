@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/core/init/navigation/navigation_manager.dart';
-import 'package:teach_yourself/product/button/app_bar_icon_button.dart';
-import 'package:teach_yourself/product/constant/color_constants.dart';
-import 'package:teach_yourself/product/constant/navigation_constants.dart';
-import 'package:teach_yourself/product/constant/string_constant.dart';
-import 'package:teach_yourself/product/listtile/question_listtile.dart';
-import 'package:teach_yourself/product/model/question.dart';
+import '../../../../core/init/navigation/navigation_manager.dart';
+import '../../../../product/button/app_bar_icon_button.dart';
+import '../../../../product/constant/color_constants.dart';
+import '../../../../product/constant/navigation_constants.dart';
+import '../../../../product/constant/string_constant.dart';
+import '../../../../product/listtile/question_listtile.dart';
+import '../../../../product/model/question.dart';
 
 class AdminHomeView extends StatelessWidget {
   const AdminHomeView({Key? key}) : super(key: key);

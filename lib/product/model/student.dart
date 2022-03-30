@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:teach_yourself/product/enums/person_type_enum.dart';
+import '../enums/person_type_enum.dart';
 
-import 'package:teach_yourself/product/model/question.dart';
+import 'question.dart';
 
 import 'person.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/constant/string_constant.dart';
+import '../constant/string_constant.dart';
 
 class AuthTextField extends StatelessWidget {
   const AuthTextField({Key? key, required this.title, this.controller}) : super(key: key);

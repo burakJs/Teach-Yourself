@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:teach_yourself/product/enums/person_type_enum.dart';
+import '../enums/person_type_enum.dart';
 
 part 'person.g.dart';
 

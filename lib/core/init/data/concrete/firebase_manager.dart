@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:teach_yourself/core/init/data/abstract/firebase_service.dart';
-import 'package:teach_yourself/product/model/person.dart';
+import '../abstract/firebase_service.dart';
+import '../../../../product/model/person.dart';
 
 class FirebaseManager extends FirebaseService {
   @override

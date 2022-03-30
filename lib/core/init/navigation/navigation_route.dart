@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:teach_yourself/feature/admin/home/unconfirmed/unconfirmed_view.dart';
-import 'package:teach_yourself/feature/admin/home/view/admin_home_view.dart';
-import 'package:teach_yourself/feature/login/view/login_view.dart';
-import 'package:teach_yourself/feature/register/view/register_view.dart';
-import 'package:teach_yourself/product/constant/navigation_constants.dart';
+import '../../../feature/admin/home/unconfirmed/view/unconfirmed_view.dart';
+import '../../../feature/admin/home/view/admin_home_view.dart';
+import '../../../feature/login/view/login_view.dart';
+import '../../../feature/register/view/register_view.dart';
+import '../../../product/constant/navigation_constants.dart';
 
 class NavigationRoute {
   static NavigationRoute? _instance;

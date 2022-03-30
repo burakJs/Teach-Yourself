@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teach_yourself/product/constant/color_constants.dart';
+import '../constant/color_constants.dart';
 
 class AppBarIconButton extends StatelessWidget {
   AppBarIconButton({required this.icon, Key? key, required this.onPressed}) : super(key: key);

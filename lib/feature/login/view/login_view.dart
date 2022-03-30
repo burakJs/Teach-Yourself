@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/button/auth_button.dart';
-import 'package:teach_yourself/product/circleavatar/logo.dart';
-import 'package:teach_yourself/product/constant/string_constant.dart';
-import 'package:teach_yourself/product/textfield/auth_textfield.dart';
+import '../../../product/button/auth_button.dart';
+import '../../../product/circleavatar/logo.dart';
+import '../../../product/constant/string_constant.dart';
+import '../../../product/textfield/auth_textfield.dart';
 
 import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/constant/navigation_constants.dart';
