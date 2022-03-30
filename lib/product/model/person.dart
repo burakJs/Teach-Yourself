@@ -26,8 +26,8 @@ class Person {
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
   Map<String, dynamic> toJson() => _$PersonToJson(this);
 
-  static PersonType _fromJson(Map<String, dynamic> json) => PersonType.values.firstWhere(
-        (e) => e.name == json['type'] as String,
+  static PersonType _fromJson(String type) => PersonType.values.firstWhere(
+        (e) => e.name == type,
       );
-  static Map<String, dynamic> _toJson(PersonType type) => {'type': type.name};
+  static String _toJson(PersonType type) => type.name;
 }
