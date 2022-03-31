@@ -1,7 +1,7 @@
 import '../../../../core/init/data/abstract/firebase_service.dart';
-import '../abstract/auth_service.dart';
 import '../../../enums/person_type_enum.dart';
 import '../../../model/person.dart';
+import '../abstract/auth_service.dart';
 
 class AuthManager extends AuthService {
   AuthManager({required FirebaseService service}) : super(service: service);

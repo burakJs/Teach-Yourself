@@ -11,4 +11,5 @@ class FirebaseConstants {
   final String unconfirmedQuestionCollection = 'unconfirmed-questions';
   final String correctListCollection = 'correct-list';
   final String doneListCollection = 'done-list';
+  final String questionDocument = 'VTOiVBJ0v7jqaFKeoaZg';
 }

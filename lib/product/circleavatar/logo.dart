@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+
 import '../constant/string_constant.dart';
 
 class Logo extends StatelessWidget {

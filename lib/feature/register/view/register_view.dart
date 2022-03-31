@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import '../../../core/init/navigation/navigation_manager.dart';
+import '../../../product/constant/navigation_constants.dart';
 import '../../../product/constant/string_constant.dart';
 import '../../../product/enums/person_type_enum.dart';
 import '../../../product/extensions/string_extension.dart';
 import '../../../product/textfield/auth_textfield.dart';
 
-import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/button/auth_button.dart';
-import '../../../product/constant/navigation_constants.dart';
 
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);

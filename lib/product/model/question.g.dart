@@ -7,26 +7,26 @@ part of 'question.dart';
 // **************************************************************************
 
 Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
-      uid: json['uid'] as String?,
       questionText: json['questionText'] as String,
       answers:
           (json['answers'] as List<dynamic>).map((e) => e as String).toList(),
       correctAnswer: json['correctAnswer'] as int,
       image: json['image'] as String?,
-      createdTime:
-          Question._fromJson(json['createdTime'] as Map<String, dynamic>),
-      solvedTime:
-          Question._fromJson(json['solvedTime'] as Map<String, dynamic>),
+      createdTime: Question._timeFromJson(json['createdTime'] as Timestamp?),
+      solvedTime: Question._timeFromJson(json['solvedTime'] as Timestamp?),
+      askableDate: Question._timeFromJson(json['askableDate'] as Timestamp?),
+      level: Question._levelFromJson(json['level'] as String),
       isConfirmed: json['isConfirmed'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
-      'uid': instance.uid,
       'questionText': instance.questionText,
       'answers': instance.answers,
       'correctAnswer': instance.correctAnswer,
       'image': instance.image,
-      'createdTime': Question._toJson(instance.createdTime),
-      'solvedTime': Question._toJson(instance.solvedTime),
+      'createdTime': Question._timeToJson(instance.createdTime),
+      'solvedTime': Question._timeToJson(instance.solvedTime),
+      'askableDate': Question._timeToJson(instance.askableDate),
+      'level': Question._levelToJson(instance.level),
       'isConfirmed': instance.isConfirmed,
     };
