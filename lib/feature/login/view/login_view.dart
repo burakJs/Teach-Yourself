@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import '../../../product/button/auth_button.dart';
-import '../../../product/circleavatar/logo.dart';
-import '../../../product/constant/string_constant.dart';
-import '../../../product/textfield/auth_textfield.dart';
 
 import '../../../core/init/navigation/navigation_manager.dart';
+import '../../../product/button/auth_button.dart';
+import '../../../product/circleavatar/logo.dart';
 import '../../../product/constant/navigation_constants.dart';
+import '../../../product/constant/string_constant.dart';
+import '../../../product/textfield/auth_textfield.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);

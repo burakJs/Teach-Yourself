@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import '../constant/color_constants.dart';
 
+import '../constant/color_constants.dart';
 import '../model/question.dart';
 
 class QuestionAlert extends StatelessWidget {
