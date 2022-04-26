@@ -20,6 +20,7 @@ class AuthManager extends AuthService {
   Future<String?> registerAndSave(Person person) async {
     String collectionName;
 
+    //TODO: switch case to extension
     switch (person.type) {
       case PersonType.admin:
         collectionName = firebaseConstants.adminCollection;
@@ -40,6 +41,7 @@ class AuthManager extends AuthService {
     }
 
     String? isError = await service.register(person);
+
     if (isError != null) return isError;
 
     await service.login(person.email ?? '', person.password ?? '');

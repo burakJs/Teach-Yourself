@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
 import 'feature/register/view/register_view.dart';
@@ -10,7 +12,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<RegisterCubit>(
+          create: (context) => RegisterCubit(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +40,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: RegisterView(),
+      home: const RegisterView(),
     );
   }
 }

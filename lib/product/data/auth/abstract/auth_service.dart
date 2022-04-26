@@ -20,6 +20,7 @@ abstract class AuthService {
         await service.getDataFromOneCollectionByValue<String>(firebaseConstants.questionerCollection, property, field);
     final resultForStudent =
         await service.getDataFromOneCollectionByValue<String>(firebaseConstants.studentCollection, property, field);
+
     return resultForAdmin.isNotEmpty || resultForQuestioner.isNotEmpty || resultForStudent.isNotEmpty;
   }
 }
