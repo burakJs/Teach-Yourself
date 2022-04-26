@@ -1,47 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/product/alert/error_alert.dart';
 
-import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/button/auth_button.dart';
 import '../../../product/circleavatar/logo.dart';
-import '../../../product/constant/navigation_constants.dart';
 import '../../../product/constant/string_constant.dart';
 import '../../../product/textfield/auth_textfield.dart';
+import '../viewmodel/login_cubit.dart';
+import '../viewmodel/login_state.dart';
 
 class LoginView extends StatelessWidget {
-  LoginView({Key? key}) : super(key: key);
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: context.paddingNormal,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Logo(radius: 70),
-              context.emptySizedHeightBoxNormal,
-              context.emptySizedHeightBoxNormal,
-              AuthTextField(
-                controller: _emailController,
-                title: StringConstant.email,
-              ),
-              AuthTextField(
-                controller: _passwordController,
-                title: StringConstant.password,
-              ),
-              context.emptySizedHeightBoxNormal,
-              Align(
-                alignment: Alignment.centerRight,
-                child: AuthButton(
-                    text: StringConstant.login,
-                    callBack: () async {
-                      NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
-                    }),
-              )
-            ],
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if (state is LoginError) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ErrorAlert(content: state.error);
+                  },
+                );
+              }
+            },
+            builder: (context, state) {
+              if (state is LoginLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is LoginSuccess) {
+                return Center(child: Text(state.uid ?? 'YOK'));
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Logo(radius: 70),
+                    context.emptySizedHeightBoxNormal,
+                    context.emptySizedHeightBoxNormal,
+                    AuthTextField(
+                      controller: context.read<LoginCubit>().emailController,
+                      title: StringConstant.email,
+                    ),
+                    AuthTextField(
+                      controller: context.read<LoginCubit>().passwordController,
+                      title: StringConstant.password,
+                    ),
+                    context.emptySizedHeightBoxNormal,
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: AuthButton(
+                        text: StringConstant.login,
+                        callBack: () async {
+                          // NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
+                          context.read<LoginCubit>().login();
+                        },
+                      ),
+                    )
+                  ],
+                );
+              }
+            },
           ),
         ),
       ),

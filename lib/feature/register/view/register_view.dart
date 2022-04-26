@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
+import '../../../product/alert/error_alert.dart';
 import '../../../product/constant/string_constant.dart';
 import '../../../product/enums/person_type_enum.dart';
 import '../../../product/extensions/string_extension.dart';
@@ -46,10 +47,7 @@ class RegisterView extends StatelessWidget {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Error'),
-            content: Text(state.error),
-          );
+          return ErrorAlert(content: state.error);
         });
   }
 

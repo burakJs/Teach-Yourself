@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
-import 'feature/register/view/register_view.dart';
+import 'feature/login/view/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'feature/login/viewmodel/login_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -17,6 +18,9 @@ void main() async {
       providers: [
         BlocProvider<RegisterCubit>(
           create: (context) => RegisterCubit(),
+        ),
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
         ),
       ],
       child: const MyApp(),
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const RegisterView(),
+      home: LoginView(),
     );
   }
 }
