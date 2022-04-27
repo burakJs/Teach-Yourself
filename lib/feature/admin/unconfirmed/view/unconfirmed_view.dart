@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/feature/admin/unconfirmed/viewmodel/admin_unconfirmed_state.dart';
+import 'package:teach_yourself/product/alert/error_alert.dart';
+import 'package:teach_yourself/product/indicator/loading_indicator.dart';
 import '../../../../product/button/app_bar_icon_button.dart';
 import '../../../../product/constant/string_constant.dart';
 import '../../../../product/listtile/question_listtile.dart';
-import '../../../../product/model/question.dart';
 
 import '../../../../../product/constant/color_constants.dart';
+import '../viewmodel/admin_unconfirmed_cubit.dart';
 
 class AdminUnconfirmedView extends StatelessWidget {
   const AdminUnconfirmedView({Key? key}) : super(key: key);
@@ -28,18 +32,42 @@ class AdminUnconfirmedView extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: questionList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return QuestionListTile(
-                  question: questionList[index],
-                  onPressed: () {},
-                );
-              },
-            ),
+          BlocConsumer<AdminUnconfirmedCubit, AdminUnconfirmedState>(
+            listener: (context, state) {
+              if (state is AdminUnconfirmedError) {
+                ErrorAlert(content: state.error);
+              }
+            },
+            builder: (context, state) {
+              if (state is AdminUnconfirmedSuccess) {
+                if (state.unconfirmedList.isNotNullOrEmpty) {
+                  return _unconfirmedList(context, state);
+                } else {
+                  return const Center(child: Text('There are no unconfirmed questions'));
+                }
+              } else {
+                return const LoadingIndicator();
+              }
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  Expanded _unconfirmedList(BuildContext context, AdminUnconfirmedSuccess state) {
+    return Expanded(
+      child: RefreshIndicator(
+        onRefresh: () => context.read<AdminUnconfirmedCubit>().getUnconfirmedList(),
+        child: ListView.builder(
+          itemCount: state.unconfirmedList!.length,
+          itemBuilder: (BuildContext context, int index) {
+            return QuestionListTile(
+              question: state.unconfirmedList![index],
+              onPressed: () {},
+            );
+          },
+        ),
       ),
     );
   }

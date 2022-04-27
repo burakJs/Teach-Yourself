@@ -86,11 +86,14 @@ class AdminHomeView extends StatelessWidget {
           return Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                  itemCount: (state.questionList ?? []).length,
-                  itemBuilder: (context, index) => QuestionListTile(
-                    question: (state.questionList ?? [])[index],
-                    onPressed: () {},
+                child: RefreshIndicator(
+                  onRefresh: () => context.read<AdminHomeCubit>().loadConfirmedQuestion(),
+                  child: ListView.builder(
+                    itemCount: (state.questionList ?? []).length,
+                    itemBuilder: (context, index) => QuestionListTile(
+                      question: (state.questionList ?? [])[index],
+                      onPressed: () {},
+                    ),
                   ),
                 ),
               ),

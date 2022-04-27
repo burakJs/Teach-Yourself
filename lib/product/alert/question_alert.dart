@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 
+import '../../feature/admin/unconfirmed/viewmodel/admin_unconfirmed_cubit.dart';
 import '../constant/color_constants.dart';
 import '../model/question.dart';
 
@@ -46,7 +48,10 @@ class QuestionAlert extends StatelessWidget {
         question.isConfirmed
             ? const SizedBox()
             : TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<AdminUnconfirmedCubit>().setConfirmed(question);
+                  context.pop();
+                },
                 child: Text(
                   'Confirmed',
                   style: context.textTheme.headline6?.copyWith(
