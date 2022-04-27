@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_cubit.dart';
+import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_state.dart';
+import 'package:teach_yourself/product/indicator/loading_indicator.dart';
+import 'package:teach_yourself/product/model/person.dart';
 import '../../../../core/init/navigation/navigation_manager.dart';
 import '../../../../product/button/app_bar_icon_button.dart';
 import '../../../../product/constant/color_constants.dart';
 import '../../../../product/constant/navigation_constants.dart';
 import '../../../../product/constant/string_constant.dart';
 import '../../../../product/listtile/question_listtile.dart';
-import '../../../../product/model/question.dart';
 
 class AdminHomeView extends StatelessWidget {
-  const AdminHomeView({Key? key}) : super(key: key);
+  AdminHomeView({Key? key, required this.person}) : super(key: key);
+  final Person person;
+  final ColorConstants _colors = ColorConstants.instance;
+  final double _iconSize = 28;
 
   @override
   Widget build(BuildContext context) {
-    ColorConstants _colors = ColorConstants.instance;
-    const double _iconSize = 28;
-
     return Scaffold(
       appBar: AppBar(
         title: _appBarTitleText(context),
@@ -39,7 +43,7 @@ class AdminHomeView extends StatelessWidget {
 
   Text _appBarTitleText(BuildContext context) {
     return Text(
-      'Hello, Burak',
+      'Hello, ${person.name}',
       style: context.textTheme.headline5,
     );
   }
@@ -68,20 +72,35 @@ class AdminHomeView extends StatelessWidget {
     );
   }
 
-  Column _questionPoolListView(ColorConstants _colors, BuildContext context, double _iconSize) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: questionList.length,
-            itemBuilder: (context, index) => QuestionListTile(
-              question: questionList[index],
-              onPressed: () {},
-            ),
-          ),
-        ),
-        _unconfirmedQuestionButton(_colors, context, _iconSize)
-      ],
+  Widget _questionPoolListView(ColorConstants _colors, BuildContext context, double _iconSize) {
+    return BlocBuilder<AdminHomeCubit, AdminHomeState>(
+      builder: (context, state) {
+        if (state is AdminHomeLoading || state is AdminHomeInitial) {
+          return Column(
+            children: [
+              const Expanded(child: LoadingIndicator()),
+              _unconfirmedQuestionButton(_colors, context, _iconSize),
+            ],
+          );
+        } else if (state is AdminHomeSuccess) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: (state.questionList ?? []).length,
+                  itemBuilder: (context, index) => QuestionListTile(
+                    question: (state.questionList ?? [])[index],
+                    onPressed: () {},
+                  ),
+                ),
+              ),
+              _unconfirmedQuestionButton(_colors, context, _iconSize)
+            ],
+          );
+        } else {
+          return ErrorWidget('SA');
+        }
+      },
     );
   }
 

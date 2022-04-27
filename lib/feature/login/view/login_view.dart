@@ -34,7 +34,7 @@ class LoginView extends StatelessWidget {
               if (state is LoginLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is LoginSuccess) {
-                return Center(child: Text(state.uid ?? 'YOK'));
+                return const SizedBox();
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

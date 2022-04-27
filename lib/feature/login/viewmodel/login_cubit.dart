@@ -6,6 +6,10 @@ import 'package:teach_yourself/feature/login/viewmodel/login_state.dart';
 import 'package:teach_yourself/product/data/auth/abstract/auth_service.dart';
 import 'package:teach_yourself/product/data/auth/concrete/auth_manager.dart';
 
+import '../../../core/init/navigation/navigation_manager.dart';
+import '../../../product/constant/navigation_constants.dart';
+import '../../../product/model/person.dart';
+
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit({AuthService? authService, FirebaseService? fireService})
       : _service = authService ?? AuthManager(service: fireService ?? FirebaseManager()),
@@ -15,6 +19,17 @@ class LoginCubit extends Cubit<LoginState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  Future<void> checkUserLogined() async {
+    emit(LoginLoading());
+    Person? person = await _service.getPerson();
+    if (person == null) {
+      emit(LoginInitial());
+    } else {
+      emit(LoginSuccess(person: person));
+      NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_HOME, data: person);
+    }
+  }
+
   Future<void> login() async {
     emit(LoginLoading());
     if (emailController.text != '' && passwordController.text != '') {
@@ -22,7 +37,9 @@ class LoginCubit extends Cubit<LoginState> {
       if (error != null) {
         emit(LoginError(error: error));
       } else {
-        emit(LoginSuccess(uid: _service.service.auth.currentUser?.uid));
+        Person? person = await _service.getPerson();
+        emit(LoginSuccess(person: person));
+        NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_HOME, data: person);
       }
     } else {
       emit(LoginError(error: 'Check all credentials'));

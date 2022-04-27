@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_cubit.dart';
 import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
@@ -20,7 +21,10 @@ void main() async {
           create: (context) => RegisterCubit(),
         ),
         BlocProvider<LoginCubit>(
-          create: (context) => LoginCubit(),
+          create: (context) => LoginCubit()..checkUserLogined(),
+        ),
+        BlocProvider<AdminHomeCubit>(
+          create: (context) => AdminHomeCubit()..loadConfirmedQuestion(),
         ),
       ],
       child: const MyApp(),
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: LoginView(),
+      home: const LoginView(),
     );
   }
 }

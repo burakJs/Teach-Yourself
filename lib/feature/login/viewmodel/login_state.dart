@@ -1,3 +1,5 @@
+import '../../../product/model/person.dart';
+
 abstract class LoginState {
   LoginState();
 }
@@ -11,8 +13,8 @@ class LoginLoading extends LoginState {
 }
 
 class LoginSuccess extends LoginState {
-  final String? uid;
-  LoginSuccess({required this.uid});
+  final Person? person;
+  LoginSuccess({required this.person});
 }
 
 class LoginError extends LoginState {

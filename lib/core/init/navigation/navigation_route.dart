@@ -5,6 +5,7 @@ import '../../../feature/admin/unconfirmed/view/unconfirmed_view.dart';
 import '../../../feature/login/view/login_view.dart';
 import '../../../feature/register/view/register_view.dart';
 import '../../../product/constant/navigation_constants.dart';
+import '../../../product/model/person.dart';
 
 class NavigationRoute {
   static NavigationRoute? _instance;
@@ -14,11 +15,12 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.REGISTER:
-        return normalNavigate(RegisterView());
+        return normalNavigate(const RegisterView());
       case NavigationConstants.LOGIN:
-        return normalNavigate(LoginView());
+        return normalNavigate(const LoginView());
       case NavigationConstants.ADMIN_HOME:
-        return normalNavigate(const AdminHomeView());
+        Person person = args.arguments as Person;
+        return normalNavigate(AdminHomeView(person: person));
       case NavigationConstants.ADMIN_UNCONFIRMED:
         return normalNavigate(const AdminUnconfirmedView());
       default:
