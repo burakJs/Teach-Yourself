@@ -53,7 +53,8 @@ class AdminHomeView extends StatelessWidget {
       padding: context.horizontalPaddingNormal,
       child: AppBarIconButton(
         icon: Icons.logout,
-        onPressed: () {
+        onPressed: () async {
+          await context.read<AdminHomeCubit>().adminLogOut();
           NavigationManager.instance.navigateToPageClear(NavigationConstants.LOGIN);
         },
       ),
@@ -110,7 +111,7 @@ class AdminHomeView extends StatelessWidget {
   ElevatedButton _unconfirmedQuestionButton(ColorConstants _colors, BuildContext context, double _iconSize) {
     return ElevatedButton(
       onPressed: () {
-        NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_UNCONFIRMED);
+        NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_UNCONFIRMED, data: person);
       },
       style: ElevatedButton.styleFrom(
         primary: _colors.blackColor,

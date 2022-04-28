@@ -25,8 +25,7 @@ class LoginCubit extends Cubit<LoginState> {
     if (person == null) {
       emit(LoginInitial());
     } else {
-      emit(LoginSuccess(person: person));
-      NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_HOME, data: person);
+      navigatePage(person);
     }
   }
 
@@ -38,11 +37,22 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginError(error: error));
       } else {
         Person? person = await _service.getPerson();
-        emit(LoginSuccess(person: person));
-        NavigationManager.instance.navigateToPage(NavigationConstants.ADMIN_HOME, data: person);
+        navigatePage(person);
       }
     } else {
       emit(LoginError(error: 'Check all credentials'));
     }
+  }
+
+  void clearTextfield() {
+    emailController.text = '';
+    passwordController.text = '';
+  }
+
+  void navigatePage(Person? person) {
+    emit(LoginSuccess(person: person));
+    NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+    emit(LoginInitial());
+    clearTextfield();
   }
 }

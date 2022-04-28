@@ -19,10 +19,11 @@ class NavigationRoute {
       case NavigationConstants.LOGIN:
         return normalNavigate(const LoginView());
       case NavigationConstants.ADMIN_HOME:
-        Person person = args.arguments as Person;
-        return normalNavigate(AdminHomeView(person: person));
+        final Person _person = args.arguments as Person;
+        return normalNavigate(AdminHomeView(person: _person));
       case NavigationConstants.ADMIN_UNCONFIRMED:
-        return normalNavigate(const AdminUnconfirmedView());
+        final Person _person = args.arguments as Person;
+        return normalNavigate(AdminUnconfirmedView(person: _person));
       default:
         return normalNavigate(const Text('ERROR'));
     }

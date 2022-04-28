@@ -4,7 +4,7 @@ import 'package:kartal/kartal.dart';
 import 'package:teach_yourself/feature/admin/unconfirmed/viewmodel/admin_unconfirmed_state.dart';
 import 'package:teach_yourself/product/alert/error_alert.dart';
 import 'package:teach_yourself/product/indicator/loading_indicator.dart';
-import '../../../../product/button/app_bar_icon_button.dart';
+import 'package:teach_yourself/product/model/person.dart';
 import '../../../../product/constant/string_constant.dart';
 import '../../../../product/listtile/question_listtile.dart';
 
@@ -12,8 +12,8 @@ import '../../../../../product/constant/color_constants.dart';
 import '../viewmodel/admin_unconfirmed_cubit.dart';
 
 class AdminUnconfirmedView extends StatelessWidget {
-  const AdminUnconfirmedView({Key? key}) : super(key: key);
-
+  const AdminUnconfirmedView({Key? key, required this.person}) : super(key: key);
+  final Person person;
   @override
   Widget build(BuildContext context) {
     final ColorConstants _colors = ColorConstants.instance;
@@ -78,26 +78,13 @@ class AdminUnconfirmedView extends StatelessWidget {
       iconTheme: IconTheme.of(context).copyWith(
         color: _colors.blackColor,
       ),
-      actions: [
-        _appBarLogOutIcon(context, _colors),
-      ],
     );
   }
 
   Text _appBarTitleText(BuildContext context) {
     return Text(
-      'Hello, Burak',
+      'Hello, ${person.name}',
       style: context.textTheme.headline5,
-    );
-  }
-
-  Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
-    return Padding(
-      padding: context.horizontalPaddingNormal,
-      child: AppBarIconButton(
-        icon: Icons.logout,
-        onPressed: () {},
-      ),
     );
   }
 }

@@ -34,40 +34,44 @@ class LoginView extends StatelessWidget {
               if (state is LoginLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is LoginSuccess) {
-                return const SizedBox();
+                return const Center(child: Text('SA'));
               } else {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Logo(radius: 70),
-                    context.emptySizedHeightBoxNormal,
-                    context.emptySizedHeightBoxNormal,
-                    AuthTextField(
-                      controller: context.read<LoginCubit>().emailController,
-                      title: StringConstant.email,
-                    ),
-                    AuthTextField(
-                      controller: context.read<LoginCubit>().passwordController,
-                      title: StringConstant.password,
-                    ),
-                    context.emptySizedHeightBoxNormal,
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: AuthButton(
-                        text: StringConstant.login,
-                        callBack: () async {
-                          // NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
-                          context.read<LoginCubit>().login();
-                        },
-                      ),
-                    )
-                  ],
-                );
+                return _loginPage(context);
               }
             },
           ),
         ),
       ),
+    );
+  }
+
+  Column _loginPage(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Logo(radius: 70),
+        context.emptySizedHeightBoxNormal,
+        context.emptySizedHeightBoxNormal,
+        AuthTextField(
+          controller: context.read<LoginCubit>().emailController,
+          title: StringConstant.email,
+        ),
+        AuthTextField(
+          controller: context.read<LoginCubit>().passwordController,
+          title: StringConstant.password,
+        ),
+        context.emptySizedHeightBoxNormal,
+        Align(
+          alignment: Alignment.centerRight,
+          child: AuthButton(
+            text: StringConstant.login,
+            callBack: () async {
+              // NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
+              context.read<LoginCubit>().login();
+            },
+          ),
+        )
+      ],
     );
   }
 }
