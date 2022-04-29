@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-class AuthButton extends StatelessWidget {
-  const AuthButton({Key? key, required this.text, required this.callBack}) : super(key: key);
+class AppButton extends StatelessWidget {
+  const AppButton({Key? key, required this.text, required this.callBack}) : super(key: key);
   final String text;
   final VoidCallback callBack;
   @override

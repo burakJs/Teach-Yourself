@@ -5,6 +5,7 @@ import 'package:teach_yourself/core/init/data/concrete/firebase_manager.dart';
 import 'package:teach_yourself/feature/login/viewmodel/login_state.dart';
 import 'package:teach_yourself/product/data/auth/abstract/auth_service.dart';
 import 'package:teach_yourself/product/data/auth/concrete/auth_manager.dart';
+import 'package:teach_yourself/product/enums/person_type_enum.dart';
 
 import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/constant/navigation_constants.dart';
@@ -51,7 +52,20 @@ class LoginCubit extends Cubit<LoginState> {
 
   void navigatePage(Person? person) {
     emit(LoginSuccess(person: person));
-    NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+
+    switch (person?.type) {
+      case PersonType.admin:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+        break;
+      case PersonType.questioner:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.QUESTIONER_HOME, data: person);
+        break;
+      case PersonType.student:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+        break;
+      default:
+    }
+
     emit(LoginInitial());
     clearTextfield();
   }

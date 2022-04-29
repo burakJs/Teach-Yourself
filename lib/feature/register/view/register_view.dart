@@ -8,7 +8,7 @@ import '../../../product/enums/person_type_enum.dart';
 import '../../../product/extensions/string_extension.dart';
 import '../../../product/textfield/auth_textfield.dart';
 
-import '../../../product/button/auth_button.dart';
+import '../../../product/button/app_button.dart';
 import '../viewmodel/register_state.dart';
 
 class RegisterView extends StatelessWidget {
@@ -61,7 +61,7 @@ class RegisterView extends StatelessWidget {
         AuthTextField(controller: context.read<RegisterCubit>().emailController, title: StringConstant.email),
         AuthTextField(controller: context.read<RegisterCubit>().passwordController, title: StringConstant.password),
         _dropdownRole(state, context),
-        AuthButton(
+        AppButton(
           text: StringConstant.register,
           callBack: () async {
             // NavigationManager.instance.navigateToPage(NavigationConstants.LOGIN);

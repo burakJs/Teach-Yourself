@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teach_yourself/feature/questioner/home/view/questioner_home_view.dart';
 
 import '../../../feature/admin/home/view/admin_home_view.dart';
 import '../../../feature/admin/unconfirmed/view/unconfirmed_view.dart';
@@ -24,6 +25,9 @@ class NavigationRoute {
       case NavigationConstants.ADMIN_UNCONFIRMED:
         final Person _person = args.arguments as Person;
         return normalNavigate(AdminUnconfirmedView(person: _person));
+      case NavigationConstants.QUESTIONER_HOME:
+        final Person _person = args.arguments as Person;
+        return normalNavigate(QuestionerHomeView(person: _person));
       default:
         return normalNavigate(const Text('ERROR'));
     }

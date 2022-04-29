@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
 import 'package:teach_yourself/product/alert/error_alert.dart';
 
-import '../../../product/button/auth_button.dart';
+import '../../../product/button/app_button.dart';
 import '../../../product/circleavatar/logo.dart';
 import '../../../product/constant/string_constant.dart';
 import '../../../product/textfield/auth_textfield.dart';
@@ -63,7 +63,7 @@ class LoginView extends StatelessWidget {
         context.emptySizedHeightBoxNormal,
         Align(
           alignment: Alignment.centerRight,
-          child: AuthButton(
+          child: AppButton(
             text: StringConstant.login,
             callBack: () async {
               // NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
