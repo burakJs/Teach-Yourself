@@ -37,12 +37,17 @@ class QuestionerHomeCubit extends Cubit<QuestionerHomeState> {
   final TextEditingController optionB = TextEditingController();
   final TextEditingController optionC = TextEditingController();
   final TextEditingController optionD = TextEditingController();
+  int correct = 0;
+
+  void setCorrect(int val) {
+    correct = val;
+  }
 
   Future<void> uploadQuestion(String? url) async {
     Question question = Question(
       questionText: questionText.text,
       answers: [optionA.text, optionB.text, optionC.text, optionD.text],
-      correctAnswer: 0,
+      correctAnswer: correct,
       createdTime: Timestamp.now(),
       level: QuestionLevel.oneDay,
       isConfirmed: false,

@@ -5,11 +5,13 @@ import 'package:teach_yourself/feature/questioner/viewmodel/questioner_home_cubi
 import 'package:teach_yourself/product/alert/error_alert.dart';
 import 'package:teach_yourself/product/button/app_button.dart';
 import 'package:teach_yourself/product/indicator/loading_indicator.dart';
+import 'package:teach_yourself/product/textfield/question_textfield.dart';
 
 import '../../../../product/button/app_bar_icon_button.dart';
 import '../../../../product/constant/color_constants.dart';
 import '../../../../product/model/person.dart';
 import '../../viewmodel/questioner_home_state.dart';
+import '../../viewmodel/radio_cubit.dart';
 
 class QuestionerHomeView extends StatelessWidget {
   QuestionerHomeView({Key? key, required this.person}) : super(key: key);
@@ -51,40 +53,93 @@ class QuestionerHomeView extends StatelessWidget {
     );
   }
 
-  Column _questionerHomeBuild(BuildContext context, bool isLoading, String? url) {
-    print('URL $url');
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        _questionOption(context, 6, 'Enter your question text here', context.read<QuestionerHomeCubit>().questionText),
-        _questionOption(context, 2, 'Option A', context.read<QuestionerHomeCubit>().optionA),
-        _questionOption(context, 2, 'Option B', context.read<QuestionerHomeCubit>().optionB),
-        _questionOption(context, 2, 'Option C', context.read<QuestionerHomeCubit>().optionC),
-        _questionOption(context, 2, 'Option D', context.read<QuestionerHomeCubit>().optionD),
-        Expanded(
-          child: isLoading
-              ? const LoadingIndicator()
-              : url != null
-                  ? Image.network(url)
-                  : GestureDetector(
-                      onTap: () async {
-                        context.read<QuestionerHomeCubit>().uploadImage();
-                      },
-                      child: const SizedBox(
-                        width: double.infinity,
-                        child: Card(
-                          child: Icon(Icons.camera_alt, size: 32),
-                        ),
-                      ),
-                    ),
-        ),
-        AppButton(
-          text: 'Save Question',
-          callBack: () {
-            context.read<QuestionerHomeCubit>().uploadQuestion(url);
-          },
-        )
-      ],
+  Widget _questionerHomeBuild(BuildContext context, bool isLoading, String? url) {
+    return BlocProvider(
+      create: (context) => RadioCubit(),
+      child: BlocBuilder<RadioCubit, int>(
+        builder: (context, state) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              QuestionTextField(
+                controller: context.read<QuestionerHomeCubit>().questionText,
+                line: 6,
+                hint: 'Enter your question text here',
+                val: -1,
+                groupValue: state,
+                changeCallback: (int? changedVal) {},
+              ),
+              QuestionTextField(
+                controller: context.read<QuestionerHomeCubit>().optionA,
+                line: 2,
+                hint: 'Option A',
+                val: 0,
+                groupValue: state,
+                changeCallback: (int? changedVal) {
+                  context.read<RadioCubit>().changeRadio(changedVal ?? 0);
+                  context.read<QuestionerHomeCubit>().setCorrect(changedVal ?? 0);
+                },
+              ),
+              QuestionTextField(
+                controller: context.read<QuestionerHomeCubit>().optionB,
+                line: 2,
+                hint: 'Option B',
+                val: 1,
+                groupValue: state,
+                changeCallback: (int? changedVal) {
+                  context.read<RadioCubit>().changeRadio(changedVal ?? 0);
+                  context.read<QuestionerHomeCubit>().setCorrect(changedVal ?? 0);
+                },
+              ),
+              QuestionTextField(
+                controller: context.read<QuestionerHomeCubit>().optionC,
+                line: 2,
+                hint: 'Option C',
+                val: 2,
+                groupValue: state,
+                changeCallback: (int? changedVal) {
+                  context.read<RadioCubit>().changeRadio(changedVal ?? 0);
+                  context.read<QuestionerHomeCubit>().setCorrect(changedVal ?? 0);
+                },
+              ),
+              QuestionTextField(
+                controller: context.read<QuestionerHomeCubit>().optionD,
+                line: 2,
+                hint: 'Option D',
+                val: 3,
+                groupValue: state,
+                changeCallback: (int? changedVal) {
+                  context.read<RadioCubit>().changeRadio(changedVal ?? 0);
+                  context.read<QuestionerHomeCubit>().setCorrect(changedVal ?? 0);
+                },
+              ),
+              Expanded(
+                child: isLoading
+                    ? const LoadingIndicator()
+                    : url != null
+                        ? Image.network(url)
+                        : GestureDetector(
+                            onTap: () async {
+                              context.read<QuestionerHomeCubit>().uploadImage();
+                            },
+                            child: const SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                child: Icon(Icons.camera_alt, size: 32),
+                              ),
+                            ),
+                          ),
+              ),
+              AppButton(
+                text: 'Save Question',
+                callBack: () {
+                  context.read<QuestionerHomeCubit>().uploadQuestion(url);
+                },
+              )
+            ],
+          );
+        },
+      ),
     );
   }
 
@@ -93,13 +148,26 @@ class QuestionerHomeView extends StatelessWidget {
       color: _colors.blackColor.withOpacity(0.1),
       child: Padding(
         padding: context.paddingLow,
-        child: TextField(
-          controller: controller,
-          maxLines: line,
-          decoration: InputDecoration.collapsed(hintText: hint),
-          style: context.textTheme.headlineSmall?.copyWith(
-            fontSize: 20,
-          ),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: controller,
+                maxLines: line,
+                decoration: InputDecoration.collapsed(hintText: hint),
+                style: context.textTheme.headlineSmall?.copyWith(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            line > 2
+                ? const SizedBox()
+                : Radio(
+                    value: 1,
+                    groupValue: -1,
+                    onChanged: (val) {},
+                  )
+          ],
         ),
       ),
     );
