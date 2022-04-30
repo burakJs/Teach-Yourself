@@ -88,7 +88,7 @@ class FirebaseManager extends FirebaseService {
   @override
   Future<void> saveDataTwoCollection(
       String firstCollection, String document, String secondCollection, Map<String, dynamic> model) async {
-    await firestore.collection(firstCollection).doc(document).collection(secondCollection).doc(document).set(model);
+    await firestore.collection(firstCollection).doc(document).collection(secondCollection).add(model);
   }
 
   @override

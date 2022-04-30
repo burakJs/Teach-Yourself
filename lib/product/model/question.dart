@@ -12,7 +12,7 @@ class Question {
   final String questionText;
   final List<String> answers;
   final int correctAnswer;
-  final String? image;
+  String? image;
   @JsonKey(fromJson: _timeFromJson, toJson: _timeToJson)
   final Timestamp? createdTime;
   @JsonKey(fromJson: _timeFromJson, toJson: _timeToJson)

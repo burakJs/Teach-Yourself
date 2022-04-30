@@ -55,7 +55,6 @@ class AdminHomeView extends StatelessWidget {
         icon: Icons.logout,
         onPressed: () async {
           await context.read<AdminHomeCubit>().adminLogOut();
-          NavigationManager.instance.navigateToPageClear(NavigationConstants.LOGIN);
         },
       ),
     );

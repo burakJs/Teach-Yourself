@@ -19,11 +19,12 @@ class QuestionAlert extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // question.image != null ? Image.network(question.image!) : const SizedBox(),
-          SizedBox(
-            height: context.height / 4,
-            child: Image.network('https://i.picsum.photos/id/130/536/354.jpg?hmac=a3CMMZgFMD60VsyMXoXbMllYckSrfgS3Dr5pUzkoZqs',
-                fit: BoxFit.cover),
-          ),
+          question.image == null
+              ? const SizedBox()
+              : SizedBox(
+                  height: context.height / 4,
+                  child: Image.network(question.image!, fit: BoxFit.cover),
+                ),
           context.emptySizedHeightBoxNormal,
           for (String answer in question.answers)
             Text(

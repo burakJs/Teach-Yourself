@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_cubit.dart';
 import 'package:teach_yourself/feature/admin/unconfirmed/viewmodel/admin_unconfirmed_cubit.dart';
 import 'package:teach_yourself/feature/login/view/login_view.dart';
+import 'package:teach_yourself/feature/questioner/viewmodel/questioner_home_cubit.dart';
 import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
 import 'core/init/navigation/navigation_manager.dart';
 import 'core/init/navigation/navigation_route.dart';
@@ -29,6 +30,9 @@ void main() async {
         ),
         BlocProvider<AdminUnconfirmedCubit>(
           create: (context) => AdminUnconfirmedCubit()..getUnconfirmedList(),
+        ),
+        BlocProvider<QuestionerHomeCubit>(
+          create: (context) => QuestionerHomeCubit(),
         ),
       ],
       child: const MyApp(),
