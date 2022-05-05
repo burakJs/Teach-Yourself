@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teach_yourself/core/init/data/concrete/firebase_manager.dart';
-import 'package:teach_yourself/feature/register/viewmodel/register_state.dart';
-import 'package:teach_yourself/product/data/auth/abstract/auth_service.dart';
-import 'package:teach_yourself/product/data/auth/concrete/auth_manager.dart';
-import 'package:teach_yourself/product/enums/person_type_enum.dart';
-import 'package:teach_yourself/product/model/person.dart';
+import '../../../core/init/data/concrete/firebase_manager.dart';
+import 'register_state.dart';
+import '../../../product/data/auth/abstract/auth_service.dart';
+import '../../../product/data/auth/concrete/auth_manager.dart';
+import '../../../product/enums/person_type_enum.dart';
+import '../../../product/model/person.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit({AuthService? service})

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import '../enums/person_type_enum.dart';
 
 part 'person.g.dart';

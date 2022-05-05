@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:teach_yourself/core/init/data/abstract/firebase_service.dart';
-import 'package:teach_yourself/core/init/data/concrete/firebase_manager.dart';
-import 'package:teach_yourself/feature/login/viewmodel/login_state.dart';
-import 'package:teach_yourself/product/data/auth/abstract/auth_service.dart';
-import 'package:teach_yourself/product/data/auth/concrete/auth_manager.dart';
-import 'package:teach_yourself/product/enums/person_type_enum.dart';
+import '../../../core/init/data/abstract/firebase_service.dart';
+import '../../../core/init/data/concrete/firebase_manager.dart';
+import 'login_state.dart';
+import '../../../product/data/auth/abstract/auth_service.dart';
+import '../../../product/data/auth/concrete/auth_manager.dart';
+import '../../../product/enums/person_type_enum.dart';
 
 import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../product/constant/navigation_constants.dart';

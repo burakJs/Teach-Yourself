@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/alert/error_alert.dart';
+import '../../../product/alert/error_alert.dart';
 
 import '../../../product/button/app_button.dart';
 import '../../../product/circleavatar/logo.dart';

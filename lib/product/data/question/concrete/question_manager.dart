@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:teach_yourself/core/init/data/abstract/storage_service.dart';
 
 import '../../../../core/init/data/abstract/firebase_service.dart';
-import '../abstract/question_service.dart';
+import '../../../../core/init/data/abstract/storage_service.dart';
 import '../../../model/question.dart';
+import '../abstract/question_service.dart';
 
 class QuestionManager extends QuestionService {
   QuestionManager({required FirebaseService firebaseService, required StorageService storageService})

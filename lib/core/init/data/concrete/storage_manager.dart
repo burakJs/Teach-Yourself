@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:teach_yourself/core/init/data/abstract/storage_service.dart';
+import '../abstract/storage_service.dart';
 
 class StorageManager extends StorageService {
   @override

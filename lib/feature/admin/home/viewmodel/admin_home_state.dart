@@ -1,4 +1,4 @@
-import 'package:teach_yourself/product/model/question.dart';
+import '../../../../product/model/question.dart';
 
 abstract class AdminHomeState {
   AdminHomeState();

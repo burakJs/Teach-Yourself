@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/feature/admin/unconfirmed/viewmodel/admin_unconfirmed_state.dart';
-import 'package:teach_yourself/product/alert/error_alert.dart';
-import 'package:teach_yourself/product/indicator/loading_indicator.dart';
-import 'package:teach_yourself/product/model/person.dart';
+import '../viewmodel/admin_unconfirmed_state.dart';
+import '../../../../product/alert/error_alert.dart';
+import '../../../../product/indicator/loading_indicator.dart';
+import '../../../../product/model/person.dart';
 import '../../../../product/constant/string_constant.dart';
 import '../../../../product/listtile/question_listtile.dart';
 

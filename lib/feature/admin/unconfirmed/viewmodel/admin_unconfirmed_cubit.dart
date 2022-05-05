@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:teach_yourself/core/init/data/abstract/firebase_service.dart';
-import 'package:teach_yourself/core/init/data/concrete/firebase_manager.dart';
-import 'package:teach_yourself/core/init/data/concrete/storage_manager.dart';
-import 'package:teach_yourself/product/data/question/abstract/question_service.dart';
-import 'package:teach_yourself/product/data/question/concrete/question_manager.dart';
+import '../../../../core/init/data/abstract/firebase_service.dart';
+import '../../../../core/init/data/concrete/firebase_manager.dart';
+import '../../../../core/init/data/concrete/storage_manager.dart';
+import '../../../../product/data/question/abstract/question_service.dart';
+import '../../../../product/data/question/concrete/question_manager.dart';
 
 import '../../../../core/init/data/abstract/storage_service.dart';
 import '../../../../product/model/question.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/extensions/string_extension.dart';
+import '../extensions/string_extension.dart';
 
 import '../constant/color_constants.dart';
 

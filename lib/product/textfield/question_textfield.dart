@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/product/constant/color_constants.dart';
+
+import '../constant/color_constants.dart';
 
 class QuestionTextField extends StatelessWidget {
   QuestionTextField({

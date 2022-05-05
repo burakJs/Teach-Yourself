@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/feature/register/viewmodel/register_cubit.dart';
+
 import '../../../product/alert/error_alert.dart';
+import '../../../product/button/app_button.dart';
 import '../../../product/constant/string_constant.dart';
 import '../../../product/enums/person_type_enum.dart';
 import '../../../product/extensions/string_extension.dart';
 import '../../../product/textfield/auth_textfield.dart';
-
-import '../../../product/button/app_button.dart';
+import '../viewmodel/register_cubit.dart';
 import '../viewmodel/register_state.dart';
 
 class RegisterView extends StatelessWidget {

@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/feature/questioner/viewmodel/questioner_home_cubit.dart';
-import 'package:teach_yourself/product/alert/error_alert.dart';
-import 'package:teach_yourself/product/button/app_button.dart';
-import 'package:teach_yourself/product/indicator/loading_indicator.dart';
-import 'package:teach_yourself/product/textfield/question_textfield.dart';
+import '../../viewmodel/questioner_home_cubit.dart';
+import '../../../../product/alert/error_alert.dart';
+import '../../../../product/appbar/base_appbar.dart';
+import '../../../../product/button/app_button.dart';
+import '../../../../product/indicator/loading_indicator.dart';
+import '../../../../product/textfield/question_textfield.dart';
 
-import '../../../../product/button/app_bar_icon_button.dart';
 import '../../../../product/constant/color_constants.dart';
 import '../../../../product/model/person.dart';
 import '../../viewmodel/questioner_home_state.dart';
 import '../../viewmodel/radio_cubit.dart';
 
 class QuestionerHomeView extends StatelessWidget {
-  QuestionerHomeView({Key? key, required this.person}) : super(key: key);
+  const QuestionerHomeView({Key? key, required this.person}) : super(key: key);
   final Person person;
 
-  final ColorConstants _colors = ColorConstants.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _appBarTitleText(context),
-        centerTitle: false,
-        actions: [
-          _appBarLogOutIcon(context, _colors),
-        ],
+      appBar: BaseAppBar(
+        name: person.name,
       ),
       body: SafeArea(
         child: Padding(
@@ -138,55 +133,6 @@ class QuestionerHomeView extends StatelessWidget {
               )
             ],
           );
-        },
-      ),
-    );
-  }
-
-  Card _questionOption(BuildContext context, int line, String hint, TextEditingController controller) {
-    return Card(
-      color: _colors.blackColor.withOpacity(0.1),
-      child: Padding(
-        padding: context.paddingLow,
-        child: Row(
-          children: [
-            Expanded(
-              child: TextField(
-                controller: controller,
-                maxLines: line,
-                decoration: InputDecoration.collapsed(hintText: hint),
-                style: context.textTheme.headlineSmall?.copyWith(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            line > 2
-                ? const SizedBox()
-                : Radio(
-                    value: 1,
-                    groupValue: -1,
-                    onChanged: (val) {},
-                  )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Text _appBarTitleText(BuildContext context) {
-    return Text(
-      'Hello, ${person.username}',
-      style: context.textTheme.headline5,
-    );
-  }
-
-  Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
-    return Padding(
-      padding: context.horizontalPaddingNormal,
-      child: AppBarIconButton(
-        icon: Icons.logout,
-        onPressed: () async {
-          await context.read<QuestionerHomeCubit>().logOut();
         },
       ),
     );

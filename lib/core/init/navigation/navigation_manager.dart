@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'navigation_service.dart';
 
 class NavigationManager extends INavigationService {

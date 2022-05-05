@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_cubit.dart';
-import 'package:teach_yourself/feature/admin/home/viewmodel/admin_home_state.dart';
-import 'package:teach_yourself/product/indicator/loading_indicator.dart';
-import 'package:teach_yourself/product/model/person.dart';
+import '../viewmodel/admin_home_cubit.dart';
+import '../viewmodel/admin_home_state.dart';
+import '../../../../product/appbar/base_appbar.dart';
+import '../../../../product/indicator/loading_indicator.dart';
+import '../../../../product/model/person.dart';
 import '../../../../core/init/navigation/navigation_manager.dart';
-import '../../../../product/button/app_bar_icon_button.dart';
 import '../../../../product/constant/color_constants.dart';
 import '../../../../product/constant/navigation_constants.dart';
 import '../../../../product/constant/string_constant.dart';
@@ -21,12 +21,8 @@ class AdminHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _appBarTitleText(context),
-        centerTitle: false,
-        actions: [
-          _appBarLogOutIcon(context, _colors),
-        ],
+      appBar: BaseAppBar(
+        name: person.name,
       ),
       body: SafeArea(
         child: Column(
@@ -37,25 +33,6 @@ class AdminHomeView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Text _appBarTitleText(BuildContext context) {
-    return Text(
-      'Hello, ${person.name}',
-      style: context.textTheme.headline5,
-    );
-  }
-
-  Padding _appBarLogOutIcon(BuildContext context, ColorConstants _colors) {
-    return Padding(
-      padding: context.horizontalPaddingNormal,
-      child: AppBarIconButton(
-        icon: Icons.logout,
-        onPressed: () async {
-          await context.read<AdminHomeCubit>().adminLogOut();
-        },
       ),
     );
   }
