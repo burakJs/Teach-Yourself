@@ -13,7 +13,7 @@ class RegisterLoading extends RegisterState {
 }
 
 class RegisterSuccess extends RegisterState {
-  final Person person;
+  final Person? person;
   RegisterSuccess({required this.person});
 }
 

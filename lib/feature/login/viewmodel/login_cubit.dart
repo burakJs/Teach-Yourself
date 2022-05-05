@@ -61,7 +61,7 @@ class LoginCubit extends Cubit<LoginState> {
         NavigationManager.instance.navigateToPageClear(NavigationConstants.QUESTIONER_HOME, data: person);
         break;
       case PersonType.student:
-        NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.STUDENT_HOME, data: person);
         break;
       default:
     }

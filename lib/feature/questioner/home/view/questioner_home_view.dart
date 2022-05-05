@@ -8,7 +8,6 @@ import '../../../../product/button/app_button.dart';
 import '../../../../product/indicator/loading_indicator.dart';
 import '../../../../product/textfield/question_textfield.dart';
 
-import '../../../../product/constant/color_constants.dart';
 import '../../../../product/model/person.dart';
 import '../../viewmodel/questioner_home_state.dart';
 import '../../viewmodel/radio_cubit.dart';
@@ -28,12 +27,10 @@ class QuestionerHomeView extends StatelessWidget {
           padding: context.paddingLow,
           child: BlocBuilder<QuestionerHomeCubit, QuestionerHomeState>(
             builder: (context, state) {
-              if (state is QuestionerHomeInitial) {
+              if (state is QuestionerHomeInitial || state is QuestionerHomeSuccess) {
                 return _questionerHomeBuild(context, false, null);
               } else if (state is QuestionerHomeError) {
                 return ErrorAlert(content: state.error);
-              } else if (state is QuestionerHomeSuccess) {
-                return Center(child: Text(state.question!.questionText));
               } else if (state is QuestionerHomeImageLoading) {
                 return _questionerHomeBuild(context, true, null);
               } else if (state is QuestionerHomeImageSuccess) {

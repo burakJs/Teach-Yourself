@@ -30,7 +30,7 @@ class RegisterView extends StatelessWidget {
               if (state is RegisterInitial) {
                 return _registerPage(context, state);
               } else if (state is RegisterSuccess) {
-                return Center(child: Text(state.person.name));
+                return Center(child: Text(state.person?.name ?? ''));
               } else if (state is RegisterLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else {

@@ -43,7 +43,12 @@ class FirebaseManager extends FirebaseService {
   @override
   Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>> getDataFromTwoCollection(
       String firstCollection, String secondCollection, String document) async {
-    final result = await firestore.collection(firstCollection).doc(document).collection(secondCollection).get();
+    final result = await firestore
+        .collection(firstCollection)
+        .doc(document)
+        .collection(secondCollection)
+        .orderBy('createdTime', descending: true)
+        .get();
     return result.docs;
   }
 

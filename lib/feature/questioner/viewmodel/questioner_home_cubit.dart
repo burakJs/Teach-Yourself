@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'questioner_home_state.dart';
 import '../../../product/data/auth/abstract/auth_service.dart';
-import '../../../product/data/auth/concrete/auth_manager.dart';
 import '../../../product/enums/question_level_enum.dart';
 
 import '../../../core/init/data/abstract/firebase_service.dart';
@@ -25,11 +24,9 @@ class QuestionerHomeCubit extends Cubit<QuestionerHomeState> {
               firebaseService: firebaseService ?? FirebaseManager(),
               storageService: storageService ?? StorageManager(),
             ),
-        _authService = authService ?? AuthManager(service: firebaseService ?? FirebaseManager()),
         super(QuestionerHomeInitial());
 
   final QuestionService _questionService;
-  final AuthService _authService;
   final TextEditingController questionText = TextEditingController();
   final TextEditingController optionA = TextEditingController();
   final TextEditingController optionB = TextEditingController();
@@ -57,12 +54,25 @@ class QuestionerHomeCubit extends Cubit<QuestionerHomeState> {
       emit(QuestionerHomeError(error: error));
     } else {
       emit(QuestionerHomeSuccess(question: question));
+      clearTextfield();
     }
   }
 
   Future<void> uploadImage() async {
     emit(QuestionerHomeImageLoading());
     final String? url = await _questionService.uploadImage();
-    emit(QuestionerHomeImageSuccess(imageUrl: url));
+    if (!(url ?? 'not fount').contains('not found')) {
+      emit(QuestionerHomeImageSuccess(imageUrl: url));
+    } else {
+      emit(QuestionerHomeInitial());
+    }
+  }
+
+  void clearTextfield() {
+    questionText.text = '';
+    optionA.text = '';
+    optionB.text = '';
+    optionC.text = '';
+    optionD.text = '';
   }
 }

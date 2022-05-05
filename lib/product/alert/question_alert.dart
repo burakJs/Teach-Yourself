@@ -14,26 +14,31 @@ class QuestionAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(question.questionText),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // question.image != null ? Image.network(question.image!) : const SizedBox(),
-          question.image == null
-              ? const SizedBox()
-              : SizedBox(
-                  height: context.height / 4,
-                  child: Image.network(question.image!, fit: BoxFit.cover),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // question.image != null ? Image.network(question.image!) : const SizedBox(),
+            question.image == null
+                ? const SizedBox()
+                : SizedBox(
+                    height: context.height / 4,
+                    child: Image.network(question.image!, fit: BoxFit.contain),
+                  ),
+            context.emptySizedHeightBoxNormal,
+            for (String answer in question.answers)
+              Padding(
+                padding: context.verticalPaddingLow,
+                child: Text(
+                  answer,
+                  style: context.textTheme.headline6?.copyWith(
+                    color: answer == question.answers[question.correctAnswer] ? _colors.greenColor : _colors.blackColor,
+                  ),
                 ),
-          context.emptySizedHeightBoxNormal,
-          for (String answer in question.answers)
-            Text(
-              answer,
-              style: context.textTheme.headline6?.copyWith(
-                color: answer == question.answers[question.correctAnswer] ? _colors.greenColor : _colors.blackColor,
               ),
-            ),
-        ],
+          ],
+        ),
       ),
       actions: [
         TextButton(

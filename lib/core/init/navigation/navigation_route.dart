@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teach_yourself/feature/student/exam/view/student_exam_view.dart';
+import 'package:teach_yourself/feature/student/home/view/student_home_view.dart';
 
 import '../../../feature/admin/home/view/admin_home_view.dart';
 import '../../../feature/admin/unconfirmed/view/unconfirmed_view.dart';
@@ -28,6 +30,11 @@ class NavigationRoute {
       case NavigationConstants.QUESTIONER_HOME:
         final Person _person = args.arguments as Person;
         return normalNavigate(QuestionerHomeView(person: _person));
+      case NavigationConstants.STUDENT_HOME:
+        final Person _person = args.arguments as Person;
+        return normalNavigate(StudentHomeView(person: _person));
+      case NavigationConstants.STUDENT_EXAM:
+        return normalNavigate(StudentExamView());
       default:
         return normalNavigate(const Text('ERROR'));
     }

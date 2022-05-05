@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/init/data/concrete/firebase_manager.dart';
+import '../../../core/init/navigation/navigation_manager.dart';
+import '../../../product/constant/navigation_constants.dart';
 import 'register_state.dart';
 import '../../../product/data/auth/abstract/auth_service.dart';
 import '../../../product/data/auth/concrete/auth_manager.dart';
@@ -44,12 +46,40 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       String? message = await _service.registerAndSave(person);
       if (message == null) {
-        emit(RegisterSuccess(person: person));
+        navigatePage(person);
       } else {
         emit(RegisterError(error: message));
       }
     } else {
       emit(RegisterError(error: 'Check all credentials'));
     }
+  }
+
+  void navigatePage(Person? person) {
+    emit(RegisterSuccess(person: person));
+
+    switch (person?.type) {
+      case PersonType.admin:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME, data: person);
+        break;
+      case PersonType.questioner:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.QUESTIONER_HOME, data: person);
+        break;
+      case PersonType.student:
+        NavigationManager.instance.navigateToPageClear(NavigationConstants.STUDENT_HOME, data: person);
+        break;
+      default:
+    }
+
+    emit(RegisterInitial());
+    clearTextfield();
+  }
+
+  void clearTextfield() {
+    nameController.text = '';
+    surnameController.text = '';
+    usernameController.text = '';
+    emailController.text = '';
+    passwordController.text = '';
   }
 }

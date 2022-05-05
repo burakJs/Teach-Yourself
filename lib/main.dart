@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teach_yourself/feature/login/view/login_view.dart';
+import 'package:teach_yourself/feature/student/exam/viewmodel/student_exam_cubit.dart';
+import 'package:teach_yourself/feature/student/exam/viewmodel/student_exam_pageview_cubit.dart';
 import 'feature/admin/home/viewmodel/admin_home_cubit.dart';
 import 'feature/admin/unconfirmed/viewmodel/admin_unconfirmed_cubit.dart';
-import 'feature/login/view/login_view.dart';
 import 'feature/questioner/viewmodel/questioner_home_cubit.dart';
 import 'feature/register/viewmodel/register_cubit.dart';
 import 'core/init/navigation/navigation_manager.dart';
@@ -33,6 +35,12 @@ void main() async {
         ),
         BlocProvider<QuestionerHomeCubit>(
           create: (context) => QuestionerHomeCubit(),
+        ),
+        BlocProvider<StudentExamCubit>(
+          create: (context) => StudentExamCubit()..loadQuestion(),
+        ),
+        BlocProvider<StudentExamPageViewCubit>(
+          create: (context) => StudentExamPageViewCubit(),
         ),
       ],
       child: const MyApp(),
