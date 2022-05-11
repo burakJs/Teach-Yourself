@@ -1,6 +1,10 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:teach_yourself/feature/student/exam/view/student_exam_view.dart';
+import 'package:teach_yourself/feature/student/exam_result/view/exam_result_view.dart';
 import 'package:teach_yourself/feature/student/home/view/student_home_view.dart';
+import 'package:teach_yourself/product/model/question.dart';
 
 import '../../../feature/admin/home/view/admin_home_view.dart';
 import '../../../feature/admin/unconfirmed/view/unconfirmed_view.dart';
@@ -34,7 +38,15 @@ class NavigationRoute {
         final Person _person = args.arguments as Person;
         return normalNavigate(StudentHomeView(person: _person));
       case NavigationConstants.STUDENT_EXAM:
-        return normalNavigate(StudentExamView());
+        return normalNavigate(const StudentExamView());
+      case NavigationConstants.STUDENT_EXAM_RESULT:
+        final data = args.arguments as LinkedHashMap<String, List<Question>>;
+        List<Question> rightQuestions = data['right'] as List<Question>;
+        List<Question> wrongQuestions = data['wrong'] as List<Question>;
+        return normalNavigate(StudentExamResultView(
+          rightQuestions: rightQuestions,
+          wrongQuestions: wrongQuestions,
+        ));
       default:
         return normalNavigate(const Text('ERROR'));
     }

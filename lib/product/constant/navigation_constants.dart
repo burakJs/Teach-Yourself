@@ -6,4 +6,5 @@ class NavigationConstants {
   static const QUESTIONER_HOME = '/questionerHome';
   static const STUDENT_HOME = '/studentHome';
   static const STUDENT_EXAM = '/studentExam';
+  static const STUDENT_EXAM_RESULT = '/studentExamResult';
 }

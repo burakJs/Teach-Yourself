@@ -80,4 +80,15 @@ class QuestionManager extends QuestionService {
 
     return null;
   }
+
+  @override
+  Future<List<Question>> get10RandomQuestions() async {
+    final List<Question> questionList = await getAllConfirmedQuestion();
+    List<Question> question10List = [];
+    for (var i = 0; i < 10; i++) {
+      questionList.shuffle();
+      question10List.add(questionList.first);
+    }
+    return questionList;
+  }
 }

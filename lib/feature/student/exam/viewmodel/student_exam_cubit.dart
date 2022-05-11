@@ -25,7 +25,7 @@ class StudentExamCubit extends Cubit<StudentExamState> {
 
   Future<void> loadQuestion() async {
     emit(StudentExamLoading());
-    List<Question> questionList = await _service.getAllConfirmedQuestion();
+    List<Question> questionList = await _service.get10RandomQuestions();
     emit(StudentExamSuccess(questionList: questionList));
   }
 }

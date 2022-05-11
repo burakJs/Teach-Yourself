@@ -18,4 +18,5 @@ abstract class QuestionService {
   String? setQuestionToConfirmed(Question question);
   Future<String?> uploadImage();
   Future<String?> uploadQuestion(Question question);
+  Future<List<Question>> get10RandomQuestions();
 }

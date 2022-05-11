@@ -38,7 +38,14 @@ class StudentExamView extends StatelessWidget {
                         if (state is StudentExamInitial || state is StudentExamLoading) {
                           return const LoadingIndicator();
                         } else if (state is StudentExamSuccess) {
-                          return StudentExamDesign(question: (state.questionList ?? [])[pageViewState]);
+                          return StudentExamDesign(
+                            question: (state.questionList ?? [])[pageViewState],
+                            optionSelected: (int option) {
+                              context
+                                  .read<StudentExamPageViewCubit>()
+                                  .setSelectedOption(option, (state.questionList ?? [])[pageViewState]);
+                            },
+                          );
                         } else {
                           return Center(child: Text((state as StudentExamError).error));
                         }
@@ -54,8 +61,15 @@ class StudentExamView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                AppButton(text: 'Before', callBack: () => context.read<StudentExamPageViewCubit>().previousPage()),
-                AppButton(text: 'After', callBack: () => context.read<StudentExamPageViewCubit>().nextPage(10)),
+                BlocBuilder<StudentExamPageViewCubit, int>(
+                  builder: (context, state) {
+                    return AppButton(
+                        text: state == 10 ? 'END EXAM' : 'AFTER QUESTION',
+                        callBack: () => context.read<StudentExamPageViewCubit>().nextPage(
+                              10,
+                            ));
+                  },
+                ),
               ],
             ),
           ),

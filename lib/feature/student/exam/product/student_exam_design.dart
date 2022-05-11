@@ -3,9 +3,9 @@ import 'package:kartal/kartal.dart';
 import 'package:teach_yourself/product/model/question.dart';
 
 class StudentExamDesign extends StatefulWidget {
-  const StudentExamDesign({Key? key, required this.question}) : super(key: key);
+  const StudentExamDesign({Key? key, required this.question, required this.optionSelected}) : super(key: key);
   final Question question;
-
+  final Function(int option) optionSelected;
   @override
   State<StudentExamDesign> createState() => _StudentExamDesignState();
 }
@@ -28,7 +28,13 @@ class _StudentExamDesignState extends State<StudentExamDesign> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           widget.question.image == null ? const SizedBox() : _questionImage(),
-          Text(widget.question.questionText),
+          Text(
+            widget.question.questionText,
+            style: context.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+            ),
+          ),
           for (int i = 0; i < widget.question.answers.length; i++) _optionBody(i, context)
         ],
       ),
@@ -37,10 +43,13 @@ class _StudentExamDesignState extends State<StudentExamDesign> {
 
   Widget _optionBody(int i, BuildContext context) {
     return GestureDetector(
-      onTap: () => setOption(i),
+      onTap: () {
+        widget.optionSelected(i);
+        setOption(i);
+      },
       child: Text(
         '${String.fromCharCode(65 + i)}) ${widget.question.answers[i]}',
-        style: context.textTheme.headline5?.copyWith(
+        style: context.textTheme.headline6?.copyWith(
           fontWeight: selectedOption == i ? FontWeight.bold : FontWeight.normal,
         ),
       ),
