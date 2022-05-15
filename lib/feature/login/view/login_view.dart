@@ -61,15 +61,33 @@ class LoginView extends StatelessWidget {
           title: StringConstant.password,
         ),
         context.emptySizedHeightBoxNormal,
-        Align(
-          alignment: Alignment.centerRight,
-          child: AppButton(
-            text: StringConstant.login,
-            callBack: () async {
-              // NavigationManager.instance.navigateToPageClear(NavigationConstants.ADMIN_HOME);
-              context.read<LoginCubit>().login();
-            },
-          ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppButton(
+                  text: 'Register',
+                  callBack: () {
+                    context.read<LoginCubit>().goToRegister();
+                  },
+                ),
+                AppButton(
+                  text: StringConstant.login,
+                  callBack: () async {
+                    context.read<LoginCubit>().login();
+                  },
+                ),
+              ],
+            ),
+            AppButton(
+              text: 'Forgot Password',
+              callBack: () async {
+                final String? result = await context.read<LoginCubit>().resetPass();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result ?? 'Reset password email sent')));
+              },
+            ),
+          ],
         )
       ],
     );

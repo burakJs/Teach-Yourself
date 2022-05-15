@@ -12,6 +12,7 @@ abstract class AuthService {
   Future<String?> registerAndSave(Person person);
   Future<String?> login(String email, String password);
   Future<Person?>? getPerson();
+  Future<String?> resetPassword(String email);
 
   Future<bool> isExist(String property, String field) async {
     final resultForAdmin =

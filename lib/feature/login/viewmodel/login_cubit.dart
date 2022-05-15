@@ -69,4 +69,16 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginInitial());
     clearTextfield();
   }
+
+  void goToRegister() {
+    NavigationManager.instance.navigateToPage(NavigationConstants.REGISTER);
+  }
+
+  Future<String?> resetPass() async {
+    if (emailController.text.trim() == '') {
+      return 'Please check email';
+    }
+    String? result = await _service.resetPassword(emailController.text.trim());
+    return result;
+  }
 }

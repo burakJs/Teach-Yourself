@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../core/init/data/abstract/firebase_service.dart';
 import '../../../enums/person_type_enum.dart';
 import '../../../model/person.dart';
@@ -70,6 +72,16 @@ class AuthManager extends AuthService {
     result = await service.getDataOneDocument(firebaseConstants.studentCollection, service.auth.currentUser!.uid);
     if (result != null) {
       return Person.fromJson(result);
+    }
+    return null;
+  }
+
+  @override
+  Future<String?> resetPassword(String email) async {
+    try {
+      await service.auth.sendPasswordResetEmail(email: email);
+    } on FirebaseException catch (e) {
+      return e.message;
     }
     return null;
   }
