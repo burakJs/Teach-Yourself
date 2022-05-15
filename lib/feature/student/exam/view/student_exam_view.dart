@@ -8,17 +8,28 @@ import 'package:teach_yourself/product/button/app_button.dart';
 import 'package:teach_yourself/product/indicator/loading_indicator.dart';
 
 import '../viewmodel/student_exam_state.dart';
+import '../viewmodel/student_exam_timer_cubit.dart';
 
 class StudentExamView extends StatelessWidget {
-  const StudentExamView({Key? key}) : super(key: key);
-
+  StudentExamView({Key? key}) : super(key: key);
+  bool isFinished = false;
+  final String finishedTime = '00:00';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '10:00',
-          style: context.textTheme.headline4,
+        title: BlocConsumer<StudentExamTimerCubit, String>(
+          listener: (context, state) {
+            isFinished = state == finishedTime;
+
+            isFinished ? context.read<StudentExamPageViewCubit>().nextPage(isFinished) : null;
+          },
+          builder: (context, state) {
+            return Text(
+              state,
+              style: context.textTheme.headline4,
+            );
+          },
         ),
       ),
       body: Column(
@@ -41,9 +52,8 @@ class StudentExamView extends StatelessWidget {
                           return StudentExamDesign(
                             question: (state.questionList ?? [])[pageViewState],
                             optionSelected: (int option) {
-                              context
-                                  .read<StudentExamPageViewCubit>()
-                                  .setSelectedOption(option, (state.questionList ?? [])[pageViewState]);
+                              context.read<StudentExamPageViewCubit>().setSelectedOption(
+                                  option, (state.questionList ?? [])[pageViewState], (state.questionList ?? []));
                             },
                           );
                         } else {
@@ -65,9 +75,7 @@ class StudentExamView extends StatelessWidget {
                   builder: (context, state) {
                     return AppButton(
                         text: state == 10 ? 'END EXAM' : 'AFTER QUESTION',
-                        callBack: () => context.read<StudentExamPageViewCubit>().nextPage(
-                              10,
-                            ));
+                        callBack: () => context.read<StudentExamPageViewCubit>().nextPage(isFinished));
                   },
                 ),
               ],
@@ -75,18 +83,6 @@ class StudentExamView extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Column _questionBody(BuildContext context, StudentExamSuccess state, int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          '${index + 1}- ${(state.questionList ?? [])[index].questionText}',
-          style: context.textTheme.headline6,
-        ),
-      ],
     );
   }
 }

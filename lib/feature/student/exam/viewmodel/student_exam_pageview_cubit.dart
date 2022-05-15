@@ -9,15 +9,24 @@ class StudentExamPageViewCubit extends Cubit<int> {
   final PageController controller = PageController(initialPage: 0);
   int pageIndex = 0;
   int selectedOption = 0;
+  final int maxQuestion = 10;
   List<Question> rightQuestions = [];
   List<Question> wrongQuestions = [];
+  List<Question> allQuestions = [];
   late Question tempQuestion;
 
-  void nextPage(int maxQuestion) {
-    if (maxQuestion == state) {
+  void nextPage(bool isFinished) {
+    if (maxQuestion == state + 1 || isFinished) {
       // Sonuç sayfa yönlendirme
-      NavigationManager.instance
-          .navigateToPage(NavigationConstants.STUDENT_EXAM_RESULT, data: {'right': rightQuestions, 'wrong': wrongQuestions});
+      saveQuestion();
+      emit(0);
+
+      NavigationManager.instance.navigateToPage(NavigationConstants.STUDENT_EXAM_RESULT, data: {
+        'right': rightQuestions,
+        'wrong': wrongQuestions,
+        'all': allQuestions,
+      });
+
       return;
     }
 
@@ -27,14 +36,21 @@ class StudentExamPageViewCubit extends Cubit<int> {
     saveQuestion();
   }
 
+  void clearList() {
+    rightQuestions = [];
+    wrongQuestions = [];
+    allQuestions = [];
+  }
+
   void setPage(int index) {
     pageIndex = index;
     emit(index);
   }
 
-  void setSelectedOption(int option, Question question) {
+  void setSelectedOption(int option, Question question, List<Question> allQuestion) {
     selectedOption = option;
     tempQuestion = question;
+    allQuestions = allQuestion;
   }
 
   void saveQuestion() {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teach_yourself/feature/login/view/login_view.dart';
 import 'package:teach_yourself/feature/student/exam/viewmodel/student_exam_cubit.dart';
 import 'package:teach_yourself/feature/student/exam/viewmodel/student_exam_pageview_cubit.dart';
+import 'package:teach_yourself/feature/student/exam/viewmodel/student_exam_timer_cubit.dart';
 import 'feature/admin/home/viewmodel/admin_home_cubit.dart';
 import 'feature/admin/unconfirmed/viewmodel/admin_unconfirmed_cubit.dart';
 import 'feature/questioner/viewmodel/questioner_home_cubit.dart';
@@ -41,6 +42,9 @@ void main() async {
         ),
         BlocProvider<StudentExamPageViewCubit>(
           create: (context) => StudentExamPageViewCubit(),
+        ),
+        BlocProvider<StudentExamTimerCubit>(
+          create: (context) => StudentExamTimerCubit()..timer(),
         ),
       ],
       child: const MyApp(),

@@ -38,14 +38,16 @@ class NavigationRoute {
         final Person _person = args.arguments as Person;
         return normalNavigate(StudentHomeView(person: _person));
       case NavigationConstants.STUDENT_EXAM:
-        return normalNavigate(const StudentExamView());
+        return normalNavigate(StudentExamView());
       case NavigationConstants.STUDENT_EXAM_RESULT:
         final data = args.arguments as LinkedHashMap<String, List<Question>>;
         List<Question> rightQuestions = data['right'] as List<Question>;
         List<Question> wrongQuestions = data['wrong'] as List<Question>;
+        List<Question> allQuestions = data['all'] as List<Question>;
         return normalNavigate(StudentExamResultView(
           rightQuestions: rightQuestions,
           wrongQuestions: wrongQuestions,
+          allQuestions: allQuestions,
         ));
       default:
         return normalNavigate(const Text('ERROR'));
