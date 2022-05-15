@@ -44,7 +44,7 @@ void main() async {
           create: (context) => StudentExamPageViewCubit(),
         ),
         BlocProvider<StudentExamTimerCubit>(
-          create: (context) => StudentExamTimerCubit()..timer(),
+          create: (context) => StudentExamTimerCubit(),
         ),
       ],
       child: const MyApp(),
